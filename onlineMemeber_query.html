@@ -16,29 +16,15 @@
 
         $(document).ready(function () {
             $.getJSON(uri).done(function (data) {
-                window.alert(data.outfit_list[0].name);
                 data.outfit_list[0].members.forEach(printMember);
             });
         });
-
-        function find() {
-            var name = $('#characterName').val();
-
-            window.alert(name);
-
-            $.getJSON(uri + '/' + name).done(function (data) {
-                $('#character').text(formatCharacter(data));
-            }).fail(function (jqXHR, textStatus, err) {
-                $('#product').text('Error:' + err);
-            });
-        }
 
         function printMember(item) {
             $('<li>', { text: formatMember(item) }).appendTo($('#members'));
         }
 
         function formatMember(data) {
-            window.alert(data.character.name.first);
             return data.character.name.first + " " + data.character.battle_rank.value + " " + data.rank;
         }
 
